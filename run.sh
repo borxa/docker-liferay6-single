@@ -1,1 +1,2 @@
-docker run --name liferay6 --detach --publish 8080:8080 --volume ~/docker/liferay6/deploy:/usr/local/liferay-portal-6.2-ce-ga6/deploy
+docker run -e POSTGRES_DB=lportal -e POSTGRES_USER=liferay -e POSTGRES_PASSWORD=liferay --publish 5433:5432 --name liferay6-db postgres
+docker run --name initial --link liferay6-db:postgres --publish 8080:8080 --volume ~/docker/liferay6/deploy:/usr/local/liferay-portal-6.2-ce-ga6/deploy
